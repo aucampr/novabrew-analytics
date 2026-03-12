@@ -1,0 +1,80 @@
+{
+  // ── Python ───────────────────────────────────────────────
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+
+  // ── Jupyter ───────────────────────────────────────────────
+  "jupyter.kernels.filter": [
+    {
+      "path": "${workspaceFolder}/.venv/bin/python",
+      "type": "pythonEnvironment"
+    }
+  ],
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+
+  // ── dbt Power User ───────────────────────────────────────
+  "dbt.projectsDir": "${workspaceFolder}/dbt",
+  "dbt.profilesDir": "${workspaceFolder}/dbt",
+
+  // ── Editor ───────────────────────────────────────────────
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.rulers": [88],        // Black's default line length
+  "editor.wordWrap": "off",
+  "editor.minimap.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.formatOnSave": true,
+
+  // ── SQL files (dbt models) ────────────────────────────────
+  "[sql]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false   // dbt Power User handles formatting
+  },
+  "files.associations": {
+    "*.sql": "sql",
+    "*.yml": "yaml",
+    "profiles.yml.example": "yaml"
+  },
+
+  // ── File Explorer ─────────────────────────────────────────
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.py": "${capture}.ipynb",
+    "dbt_project.yml": "packages.yml, profiles.yml.example"
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.ipynb_checkpoints": true,
+    "**/dbt/target": true,
+    "**/dbt/dbt_packages": true,
+    "**/.venv": true
+  },
+
+  // ── Terminal ──────────────────────────────────────────────
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.cwd": "${workspaceFolder}",
+
+  // ── Git ───────────────────────────────────────────────────
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "gitlens.hovers.currentLine.over": "line",
+
+  // ── Rainbow CSV ───────────────────────────────────────────
+  "rainbow_csv.enable_auto_csv_lint": false,   // avoids slowdown on large files
+
+  // ── Misc ─────────────────────────────────────────────────
+  "breadcrumbs.enabled": true,
+  "workbench.editor.labelFormat": "short",
+  "security.workspace.trust.untrustedFiles": "open"
+}

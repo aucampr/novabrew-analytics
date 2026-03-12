@@ -1,0 +1,73 @@
+# ============================================================
+# NovaBrew Analytics — .gitignore
+# ============================================================
+
+# ── Generated Data (regenerate with generate_data.py) ────────
+data_generation/output/
+
+# ── dbt Credentials (NEVER commit these) ─────────────────────
+dbt/profiles.yml
+
+# ── Environment Variables & Secrets ──────────────────────────
+.env
+.env.local
+*.env
+*_credentials.json
+*-credentials.json
+service_account*.json
+gcp_keyfile*.json
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+.venv/
+venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+# ── dbt Artifacts (generated, not source) ────────────────────
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# ── macOS ────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── Windows ──────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── VSCode ───────────────────────────────────────────────────
+# Keep settings.json (shared config) but ignore personal/local overrides
+.vscode/launch.json
+.vscode/*.code-workspace
+
+# ── Looker Studio / Dashboard exports ────────────────────────
+dashboards/**/*.pdf
+dashboards/**/*.csv
+
+# ── Misc ─────────────────────────────────────────────────────
+*.log
+*.tmp
+*.swp
+*.swo
+.coverage
+htmlcov/

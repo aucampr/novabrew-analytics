@@ -1,0 +1,53 @@
+# ============================================================
+# NovaBrew Analytics — Python Dependencies
+# ============================================================
+# Install: pip install -r requirements.txt
+# Recommended: use a virtual environment first
+#   python -m venv .venv
+#   source .venv/bin/activate  (Mac/Linux)
+#   .venv\Scripts\activate     (Windows)
+# ============================================================
+
+# ── Core Data ────────────────────────────────────────────────
+pandas>=2.0.0
+numpy>=1.26.0
+
+# ── Data Generation (Post 1) ─────────────────────────────────
+faker>=24.0.0               # Realistic names, emails, addresses
+
+# ── BigQuery (Posts 1–10) ────────────────────────────────────
+google-cloud-bigquery>=3.17.0
+google-cloud-bigquery-storage>=2.24.0   # Faster BQ reads via Storage API
+db-dtypes>=1.2.0                        # BQ type support for pandas
+
+# ── dbt (Posts 2–10) ─────────────────────────────────────────
+dbt-core>=1.7.0
+dbt-bigquery>=1.7.0
+
+# ── Orchestration (Post 5) ───────────────────────────────────
+dagster>=1.6.0
+dagster-webserver>=1.6.0
+dagster-gcp>=0.22.0         # Dagster + BigQuery integration
+
+# ── Jupyter Notebooks (Posts 2, 4, 6, 7, 8) ──────────────────
+jupyter>=1.0.0
+ipykernel>=6.29.0
+nbformat>=5.9.0
+
+# ── Visualisation (All analysis posts) ───────────────────────
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.20.0               # Interactive charts in notebooks
+
+# ── Statistical Testing (Post 7) ─────────────────────────────
+scipy>=1.12.0
+
+# ── Forecasting (Post 8) ─────────────────────────────────────
+prophet>=1.1.5               # Facebook Prophet for time-series forecasting
+# Note: Prophet requires pystan. If install fails, try:
+# pip install pystan==2.19.1.1 first, then pip install prophet
+
+# ── Utilities ────────────────────────────────────────────────
+python-dotenv>=1.0.0        # Load .env files for credentials
+tqdm>=4.66.0                # Progress bars for long-running scripts
+tabulate>=0.9.0             # Pretty-print tables in terminal output
