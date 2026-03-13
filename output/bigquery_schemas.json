@@ -1,0 +1,374 @@
+{
+  "customers": [
+    {
+      "name": "customer_id",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "first_name",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "last_name",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "email",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "state",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "acquisition_channel",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "signup_date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "is_subscriber",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "email_opt_in",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "date_of_birth",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    }
+  ],
+  "orders": [
+    {
+      "name": "order_id",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "customer_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "order_date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "shipped_date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "delivered_date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "channel",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "promo_code",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "discount_pct",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "subtotal",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "shipping_cost",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tax",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "order_total",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "status",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "is_first_order",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    }
+  ],
+  "order_items": [
+    {
+      "name": "item_id",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "order_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "customer_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "product_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "product_name",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "category",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "quantity",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "unit_price",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "discount_pct",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "line_total",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "cogs",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    }
+  ],
+  "sessions": [
+    {
+      "name": "session_id",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "session_date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "channel",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "device",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "landing_page",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "pages_viewed",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "duration_seconds",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "bounced",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "utm_source",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "utm_medium",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "utm_campaign",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "converted",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "order_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "ad_spend": [
+    {
+      "name": "spend_id",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "platform",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "campaign_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "campaign_name",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "impressions",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "clicks",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ctr",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "spend",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "conversions",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "conversion_value",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "roas",
+      "type": "FLOAT64",
+      "mode": "NULLABLE"
+    }
+  ],
+  "email_events": [
+    {
+      "name": "event_id",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "customer_id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "email",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "flow",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "email_number",
+      "type": "INT64",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "send_date",
+      "type": "DATE",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sent",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "opened",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "clicked",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "converted",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "unsubscribed",
+      "type": "BOOLEAN",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "subject_line",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ]
+}

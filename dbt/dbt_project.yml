@@ -1,0 +1,31 @@
+name: novabrew
+version: "1.0.0"
+config-version: 2
+profile: novabrew
+
+# Path configurations
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_modules"
+  - "dbt_packages"
+
+# Model configurations
+models:
+  novabrew:
+    staging:
+      +schema: novabrew_staging
+      +materialized: view
+    intermediate:
+      +schema: novabrew_intermediate
+      +materialized: view
+    marts:
+      +schema: novabrew_marts
+      +materialized: table

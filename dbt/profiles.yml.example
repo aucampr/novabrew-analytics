@@ -1,0 +1,33 @@
+# ============================================================
+# NovaBrew Analytics — dbt Connection Profile (EXAMPLE)
+# ============================================================
+# 1. Copy this file: cp profiles.yml.example profiles.yml
+# 2. Fill in your BigQuery project details below
+# 3. profiles.yml is gitignored — never commit real credentials
+#
+# Docs: https://docs.getdbt.com/docs/core/connect-data-platform/bigquery-setup
+# ============================================================
+
+novabrew:
+  target: dev
+  outputs:
+
+    dev:
+      type: bigquery
+      method: oauth                   # Uses your `gcloud auth login` credentials
+      project: YOUR_GCP_PROJECT_ID    # e.g. novabrew-analytics-123456
+      dataset: novabrew_dev           # Your personal dev dataset in BigQuery
+      location: US
+      threads: 4
+      timeout_seconds: 300
+      priority: interactive
+
+    prod:
+      type: bigquery
+      method: oauth
+      project: YOUR_GCP_PROJECT_ID
+      dataset: novabrew_marts         # Production dataset — Looker Studio connects here
+      location: US
+      threads: 8
+      timeout_seconds: 300
+      priority: interactive

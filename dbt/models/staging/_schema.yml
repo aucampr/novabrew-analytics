@@ -1,0 +1,123 @@
+# models/staging/_stg_sources.yml
+# ============================================================
+# NovaBrew Analytics — Source + Staging Model Tests
+# Post 2: Customer Segmentation
+# ============================================================
+
+version: 2
+
+# ── Sources ───────────────────────────────────────────────────────────────────
+
+sources:
+  - name: novabrew_raw
+    description: "Raw data loaded from synthetic data generator (Post 1)"
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: novabrew_raw
+    tables:
+      - name: customers
+        config:
+          freshness:
+            warn_after: {count: 7, period: day}
+          loaded_at_field: signup_date
+        columns:
+          - name: customer_id
+            tests: [unique, not_null]
+          - name: email
+            tests: [not_null]
+          - name: acquisition_channel
+            tests:
+              - accepted_values:
+                  config:
+                    arguments:
+                      values: ['paid_search', 'paid_social', 'organic_search',
+                              'organic_social', 'email', 'direct', 'referral']
+
+      - name: orders
+        description: "Order header records"
+        columns:
+          - name: order_id
+            tests: [unique, not_null]
+          - name: customer_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('novabrew_raw', 'customers')
+                  field: customer_id
+          - name: status
+            tests:
+              - accepted_values:
+                  values: ['delivered', 'cancelled', 'refunded']
+
+      - name: order_items
+        description: "Order line items"
+        columns:
+          - name: item_id
+            tests: [unique, not_null]
+          - name: order_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('novabrew_raw', 'orders')
+                  field: order_id
+
+# ── Staging Models ────────────────────────────────────────────────────────────
+
+models:
+  - name: stg_customers
+    description: "Cleaned customer records with derived age bands and channel groupings"
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: acquisition_channel
+        tests:
+          - accepted_values:
+              values: ['paid_search', 'paid_social', 'organic_search',
+                       'organic_social', 'email', 'direct', 'referral', 'unknown']
+      - name: channel_type
+        tests:
+          - accepted_values:
+              values: ['paid', 'organic']
+      - name: age_band
+        tests:
+          - accepted_values:
+              values: ['18-24', '25-34', '35-44', '45-54', '55+']
+
+  - name: stg_orders
+    description: "Cleaned order records with derived date parts and revenue flags"
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: customer_id
+        tests: [not_null]
+      - name: order_total
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'cancelled', 'refunded']
+      - name: days_to_ship
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: mart_customer_segments
+    description: >
+      RFM-scored customer segments. One row per customer.
+      Purchasers receive R/F/M scores (1-4) and a segment label.
+      Non-purchasers receive segment = 'Non-Buyer'.
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: segment
+        tests:
+          - accepted_values:
+              values: ['Champion', 'Loyal', 'Promising', 'Needs Attention',
+                       'At Risk', 'Lost', 'Occasional', 'Non-Buyer']
+      - name: r_score
+        description: "RFM recency score 1-4. NULL for non-buyers."
+      - name: total_revenue
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
